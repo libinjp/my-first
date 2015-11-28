@@ -9,37 +9,40 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+//基金基本情报
 @Entity
 public class Portfolio {
 
 	public Portfolio(){
 	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	//	名字
 	@Column(nullable = false)
 	private String name;
 
-    @ManyToMany(
-    		targetEntity= io.cj.portfolio.jpa.model.Label.class,
-    		cascade=CascadeType.ALL,
-    		fetch=FetchType.LAZY
-    )
-    @JoinTable(
-    	name="LabelPortfolio",
-        joinColumns={@JoinColumn(name="portfolioid")},
-        inverseJoinColumns={@JoinColumn(name="labelid")}
-    )
-    @JsonBackReference // this annotation prevents the exception
-	private List<Label> labels;
+	//	todo ,add
+
+	//	标签集
+//    @ManyToMany(
+//    		targetEntity= io.cj.portfolio.jpa.model.Label.class,
+//    		cascade=CascadeType.ALL,
+//    		fetch=FetchType.LAZY
+//    )
+//    @JoinTable(
+//    	name="LabelPortfolio",
+//        joinColumns={@JoinColumn(name="portfolioid")},
+//        inverseJoinColumns={@JoinColumn(name="labelid")}
+//    )
+//    @JsonManagedReference // this annotation prevents the exception
+	@OneToMany(mappedBy = "portfolio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonManagedReference // this annotation prevents the exception
+	private List<LabelPortfolio> labelPortfolios;
 
 	public Long getId() {
 		return id;
@@ -57,12 +60,12 @@ public class Portfolio {
 		this.name = name;
 	}
 
-	public List<Label> getLabels() {
-		return labels;
+	public List<LabelPortfolio> getLabelPortfolios() {
+		return labelPortfolios;
 	}
 
-	public void setLabels(List<Label> labels) {
-		this.labels = labels;
+	public void setLabelPortfolios(List<LabelPortfolio> labelPortfolios) {
+		this.labelPortfolios = labelPortfolios;
 	}
 
 }

@@ -113,64 +113,97 @@ public class DatabasePopulator implements CommandLineRunner {
 
 		Label label1 = new Label();
 		label1.setId(1L);
-		label1.setName("parent");
+		label1.setName("Label parent");
+//		label1.setLoginUserID(1L);
 
 		Label label2 = new Label();
 		label2.setId(2L);
-		label2.setName("child 1");
+		label2.setName("Label child 1");
 		label2.setParent(label1);
+		label2.setLoginUserID(1L);
 
 		Label label3 = new Label();
 		label3.setId(3L);
-		label3.setName("child 2");
+		label3.setName("Label child 2");
 		label3.setParent(label1);
+		label3.setLoginUserID(1L);
+
+		Label label4 = new Label();
+		label4.setId(4L);
+		label4.setName("Label chil3");
+		label4.setParent(label1);
+		label4.setLoginUserID(1L);
 
 		labelRepository.save(label1);
 		labelRepository.save(label2);
 		labelRepository.save(label3);
+		labelRepository.save(label4);
 
 		Portfolio portfolio1 = new Portfolio();
 		portfolio1.setId(1L);
-		portfolio1.setName("name1");
+		portfolio1.setName("Portfolio name1");
 
 		Portfolio portfolio2 = new Portfolio();
 		portfolio2.setId(2L);
-		portfolio2.setName("name2");
+		portfolio2.setName("Portfolio name2");
 
 		Portfolio portfolio3 = new Portfolio();
 		portfolio3.setId(3L);
-		portfolio3.setName("name3");
-
-
+		portfolio3.setName("Portfolio name3");
 		portfolioRepository.save(portfolio1);
 		portfolioRepository.save(portfolio2);
 		portfolioRepository.save(portfolio3);
 
 
 		LabelPortfolio lablePortfolio1 = new LabelPortfolio();
+
 		lablePortfolio1.setId(1L);
 		lablePortfolio1.setLabelid(1L);
-		lablePortfolio1.setPortfolioid(1L);
+		lablePortfolio1.setPortfolio(portfolio2);
+		lablePortfolio1.setLoginId(1L);
+		lablePortfolio1.setLabelDisplay("labelDisplay/111111");
 
 		LabelPortfolio lablePortfolio2 = new LabelPortfolio();
 		lablePortfolio2.setId(2L);
 		lablePortfolio2.setLabelid(1L);
-		lablePortfolio2.setPortfolioid(2L);
+		lablePortfolio2.setPortfolio(portfolio3);
+		lablePortfolio2.setLoginId(1L);
+		lablePortfolio2.setLabelDisplay("labelDisplay/111111");
 
 		LabelPortfolio lablePortfolio3 = new LabelPortfolio();
 		lablePortfolio3.setId(3L);
 		lablePortfolio3.setLabelid(1L);
-		lablePortfolio3.setPortfolioid(3L);
+		lablePortfolio3.setPortfolio(portfolio1);
+		lablePortfolio3.setLoginId(1L);
+		lablePortfolio3.setLabelDisplay("labelDisplay/111111");
 
 		LabelPortfolio lablePortfolio4 = new LabelPortfolio();
 		lablePortfolio4.setId(4L);
 		lablePortfolio4.setLabelid(2L);
-		lablePortfolio4.setPortfolioid(2L);
+		lablePortfolio4.setPortfolio(portfolio1);
+		lablePortfolio4.setLoginId(1L);
+		lablePortfolio4.setLabelDisplay("labelDisplay/111111");
+
+		LabelPortfolio lablePortfolio5 = new LabelPortfolio();
+		lablePortfolio5.setId(5L);
+		lablePortfolio5.setLabelid(3L);
+		lablePortfolio5.setPortfolio(portfolio1);
+		lablePortfolio5.setLoginId(1L);
+		lablePortfolio5.setLabelDisplay("labelDisplay/111111");
+
+		LabelPortfolio lablePortfolio6 = new LabelPortfolio();
+		lablePortfolio6.setId(6L);
+		lablePortfolio6.setLabelid(4L);
+		lablePortfolio6.setPortfolio(portfolio2);
+		lablePortfolio6.setLoginId(1L);
+		lablePortfolio6.setLabelDisplay("labelDisplay/111111");
 
 		labelportfolioRepository.save(lablePortfolio1);
 		labelportfolioRepository.save(lablePortfolio2);
 		labelportfolioRepository.save(lablePortfolio3);
 		labelportfolioRepository.save(lablePortfolio4);
+		labelportfolioRepository.save(lablePortfolio5);
+		labelportfolioRepository.save(lablePortfolio6);
 	}
 
 }
